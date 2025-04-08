@@ -30,7 +30,7 @@ const Dasboard = () => {
       }
       {
         interviews &&
-        <div className="grid md:grid-cols-3 p-12 w-full justify-center gap-12">
+        <div className="grid md:grid-cols-2 p-8  w-full justify-center gap-8">
           {interviews?.map((interview) => <InterviewCard key={interview.id} interview={interview} />)}
         </div>
       }
