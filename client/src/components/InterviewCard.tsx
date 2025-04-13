@@ -16,7 +16,7 @@ const InterviewCard = ({ interview }: { interview: Tables<"interviews"> }) => {
                 <ul className="flex gap-2 items-center text-sm">
                     {interview.technologies?.map((technology) => <li key={technology} className="bg-slate-600 line-clamp-1 rounded-lg px-2 py-1">{technology}</li>)}
                 </ul>
-                <Link to={`/interview/${interview.interview_name.split(" ").join("-").toLowerCase()}`} className="bg-slate-800 px-2 py-1 rounded-lg border-[1px] border-slate-700 hover:bg-slate-800/50 hover:border-slate-600 ease-in-out duration-75 cursor-pointer">
+                <Link state={{interview: interview}} to={`/interview/${interview.interview_name.split(" ").join("-").toLowerCase()}`} className="bg-slate-800 px-2 py-1 rounded-lg border-[1px] border-slate-700 hover:bg-slate-800/50 hover:border-slate-600 ease-in-out duration-75 cursor-pointer">
                     Take interview
                 </Link>
             </div>

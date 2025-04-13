@@ -102,7 +102,7 @@ const AIMic = () => {
 }
 
 const ErrorCircle = () => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width={28} height={28} viewBox="0 0 20 20"><g fill="none"><path fill="url(#fluentColorErrorCircle200)" d="M10 2a8 8 0 1 1 0 16a8 8 0 0 1 0-16" /><path fill="url(#fluentColorErrorCircle201)" fill-rule="evenodd" d="M10.5 6.5a.5.5 0 0 0-1 0V11a.5.5 0 0 0 1 0zM10 14a.75.75 0 1 0 0-1.5a.75.75 0 0 0 0 1.5" clip-rule="evenodd" /><defs><linearGradient id="fluentColorErrorCircle200" x1="4.5" x2="15" y1="-.5" y2="19.5" gradientUnits="userSpaceOnUse"><stop stop-color="#ffcd0f" /><stop offset="1" stop-color="#fe8401" /></linearGradient><linearGradient id="fluentColorErrorCircle201" x1="8" x2="12" y1="6" y2="14" gradientUnits="userSpaceOnUse"><stop stop-color="#4a4a4a" /><stop offset="1" stop-color="#212121" /></linearGradient></defs></g></svg>
+    return <svg xmlns="http://www.w3.org/2000/svg" width={28} height={28} viewBox="0 0 20 20"><g fill="none"><path fill="url(#fluentColorErrorCircle200)" d="M10 2a8 8 0 1 1 0 16a8 8 0 0 1 0-16" /><path fill="url(#fluentColorErrorCircle201)" fillRule="evenodd" d="M10.5 6.5a.5.5 0 0 0-1 0V11a.5.5 0 0 0 1 0zM10 14a.75.75 0 1 0 0-1.5a.75.75 0 0 0 0 1.5" clipRule="evenodd" /><defs><linearGradient id="fluentColorErrorCircle200" x1="4.5" x2="15" y1="-.5" y2="19.5" gradientUnits="userSpaceOnUse"><stop stopColor="#ffcd0f" /><stop offset="1" stopColor="#fe8401" /></linearGradient><linearGradient id="fluentColorErrorCircle201" x1="8" x2="12" y1="6" y2="14" gradientUnits="userSpaceOnUse"><stop stopColor="#4a4a4a" /><stop offset="1" stopColor="#212121" /></linearGradient></defs></g></svg>
 }
 type companyIconsType = {
     [companyName: string]: React.ReactElement

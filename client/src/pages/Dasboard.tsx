@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import getInterviews from "../services/api"
+import { getInterviews } from "../services/api"
 import Navbar from "../components/Navbar";
 import InterviewCard from "../components/InterviewCard";
 import { Loader } from "../components/Icons";
@@ -21,7 +21,6 @@ const Dasboard = () => {
       setInterviews(interviews);
     }).catch((err) => console.error(err)).finally(() => setIsLoading(false));
   }, [])
-
   return (
     <section className="relative overflow-scroll min-h-screen bg-slate-950"><div className="absolute flex flex-col bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]">
       <Navbar />

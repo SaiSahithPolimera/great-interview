@@ -19,7 +19,7 @@ const GetStartedButton = () => {
 const Hero = () => {
     const { user } = useAuth();
     return (
-        <div className="flex-grow-1 flex items-center flex-col gap-2 w-full justify-center">
+        <div className="flex-grow-1 flex items-center flex-col gap-2 w-full justify-center animate-fade">
             <div className="relative group cursor-pointer p-[1px] rounded-2xl 
                 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
                 hover:from-pink-500 hover:via-green-300 hover:shadow hover:shadow-amber-300 hover:to-blue-500
