@@ -10,4 +10,3 @@ export const getInterviews = async () => {
   }
   return interviews;
 };
-

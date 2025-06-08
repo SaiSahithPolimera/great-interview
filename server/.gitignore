@@ -1,2 +1,11 @@
 .env
 node_modules
+responses.json
+interiview-links.jsonl
+discussionLinks.jsonl
+discussions.json
+/scraper
+seedDatabase.ts
+script.p
+interview_summaries.json
+/data

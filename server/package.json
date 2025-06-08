@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "start": "npx tsx app.ts",
@@ -12,11 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^0.12.0",
+    "@google/generative-ai": "^0.24.0",
+    "@supabase/supabase-js": "^2.49.4",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "fs-extra": "^11.3.0"
   },
   "devDependencies": {
+    "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
     "tsx": "^4.19.3"
   }

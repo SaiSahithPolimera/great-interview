@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createAssitant } from "../controllers/assitantController.js";
 
-export const router: Router = Router();
+export const assitantRouter: Router = Router();
 
-router.post("/api/create-assitant", createAssitant);
+assitantRouter.post("/api/create-assitant", createAssitant);

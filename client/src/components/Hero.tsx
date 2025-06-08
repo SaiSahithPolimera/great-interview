@@ -4,17 +4,16 @@ import { useAuth } from "../hooks/useAuth";
 
 const GetStartedButton = () => {
     return (
-        <Link to={"/dashboard"} className="relative border-[2px] inline-flex items-center justify-center px-1.5 rounded-2xl py-1 overflow-hidden font-medium text-indigo-600 shadow-2xl group">
-            <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-[#4ca1af] blur-md ease"></span>
-            <span className="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180">
-                <span className="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-[#77009f] rounded-full blur-md"></span>
-                <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-[#002f70] rounded-full blur-md"></span>
-            </span>
-            <span className="relative text-white">Get started</span>
-        </Link>
+            <Link to={"/dashboard"} className="relative border-[2px] inline-flex items-center justify-center px-1.5 rounded-2xl py-1 overflow-hidden font-medium text-indigo-600 shadow-2xl group">
+                <span className="absolute top-0 left-0 w-40 h-40 -mt-8 -ml-3 transition-all duration-700 bg-[#4ca1af] blur-md ease"></span>
+                <span className="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180">
+                    <span className="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-[#77009f] rounded-full blur-md"></span>
+                    <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-[#002f70] rounded-full blur-md"></span>
+                </span>
+                <span className="relative text-white">Get started</span>
+            </Link>
     )
 }
-
 
 const Hero = () => {
     const { user } = useAuth();

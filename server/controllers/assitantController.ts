@@ -1,13 +1,7 @@
-import type { Tables } from "../types/database.types.ts";
+import type { Tables } from "../lib/database.types";
 
 export const createAssitant = async (req, res) => {
-  const {
-    interview_name,
-    company,
-    duration,
-    technologies,
-    description,
-  }: Tables<"interviews"> = req.body;
+  const {interview_name, company, technologies, description, duration} = req.body;
   const assitant = {
     name: interview_name,
     transcriber: {
