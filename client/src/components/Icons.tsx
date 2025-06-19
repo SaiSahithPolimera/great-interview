@@ -144,6 +144,10 @@ export const BrainIcon = () => (
     </svg>
 );
 
+export const LocationIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"><path fill="currentColor" d="m18.157 16.882l-1.187 1.174q-1.312 1.288-3.406 3.312a2.25 2.25 0 0 1-3.128 0l-3.49-3.396q-.66-.646-1.103-1.09a8.707 8.707 0 1 1 12.314 0M14.501 11a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0"></path></svg>
+)
+
 export const PlayIcon = () => (
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
         <path d="M8 5v14l11-7z" />

@@ -36,59 +36,24 @@ export type Database = {
     Tables: {
       interview_questions: {
         Row: {
+          company: string | null
           id: number
-          interview_id: number | null
-          question: string | null
+          questions: string[] | null
+          technologies: string[] | null
         }
         Insert: {
+          company?: string | null
           id?: number
-          interview_id?: number | null
-          question?: string | null
+          questions?: string[] | null
+          technologies?: string[] | null
         }
         Update: {
+          company?: string | null
           id?: number
-          interview_id?: number | null
-          question?: string | null
+          questions?: string[] | null
+          technologies?: string[] | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "interview_questions_interview_id_fkey"
-            columns: ["interview_id"]
-            isOneToOne: false
-            referencedRelation: "interviews"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      interview_technologies: {
-        Row: {
-          interview_id: number
-          technology_id: number
-        }
-        Insert: {
-          interview_id: number
-          technology_id: number
-        }
-        Update: {
-          interview_id?: number
-          technology_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "interview_technologies_interview_id_fkey"
-            columns: ["interview_id"]
-            isOneToOne: false
-            referencedRelation: "interviews"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "interview_technologies_technology_id_fkey"
-            columns: ["technology_id"]
-            isOneToOne: false
-            referencedRelation: "technologies"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       interviews: {
         Row: {
@@ -140,42 +105,19 @@ export type Database = {
       }
       system_design_questions: {
         Row: {
+          company: string | null
           id: number
-          interview_id: number | null
-          question: string | null
+          question: string[] | null
         }
         Insert: {
+          company?: string | null
           id?: number
-          interview_id?: number | null
-          question?: string | null
+          question?: string[] | null
         }
         Update: {
+          company?: string | null
           id?: number
-          interview_id?: number | null
-          question?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "system_design_questions_interview_id_fkey"
-            columns: ["interview_id"]
-            isOneToOne: false
-            referencedRelation: "interviews"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      technologies: {
-        Row: {
-          id: number
-          name: string | null
-        }
-        Insert: {
-          id?: number
-          name?: string | null
-        }
-        Update: {
-          id?: number
-          name?: string | null
+          question?: string[] | null
         }
         Relationships: []
       }

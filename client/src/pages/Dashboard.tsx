@@ -1,32 +1,18 @@
-import { getInterviews } from "../services/api"
+import InfiniteExperiences from "../components/InfiniteExperiences";
 import Navbar from "../components/Navbar";
-import ExperienceCard from "../components/ExperienceCard";
-import { Loader } from "../components/Icons";
-import { useQuery } from "@tanstack/react-query";
 import SelectionBar from "../components/SelectionBar";
 import { useState } from "react";
 
 const Dasboard = () => {
-  const { data: interviews, isLoading } = useQuery({
-    queryKey: ["interviews"],
-    queryFn: getInterviews
-  });
 
   const options: string[] = ["Experiences", "System Design", "Questions", "Interview"];
   const [selectedOption, setSelectedOption] = useState(options[0]);
-
-
   const renderContent = () => {
     switch (selectedOption) {
       case "Experiences":
         return (
           <>
-            <div className="grid grid-cols-4 gap-3 items-stretch justify-center py-12 text-slate-400">
-              {
-                interviews?.map((interview) => <ExperienceCard key={interview.id} interview={interview}/>)
-              }
-              <div className="text-lg mb-2">No interviews found</div>
-            </div>
+              <InfiniteExperiences/>
           </>
         );
 
@@ -68,13 +54,7 @@ const Dasboard = () => {
       <div className="absolute flex flex-col bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]">
         <Navbar />
 
-        {isLoading && (
-          <div className="flex-grow flex w-full items-center justify-center">
-            <Loader />
-          </div>
-        )}
-
-        {interviews && (
+        {(
           <>
             <SelectionBar
               options={options}

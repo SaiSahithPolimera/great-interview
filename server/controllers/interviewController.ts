@@ -1,0 +1,49 @@
+import supabase from "../lib/supabase";
+import { Request, Response } from "express";
+
+type paginationTypes = {
+  limit: number;
+  cursor: number;
+};
+
+const getInterviewsFromDB = async ({ limit, cursor }: paginationTypes) => {
+  let query = supabase
+    .from("interviews")
+    .select("*", { count: "exact" })
+    .order("id")
+    .limit(limit);
+
+  if (cursor) {
+    query = query.gt("id", cursor);
+  }
+
+  const { data: interviews, count, error } = await query;
+
+  const nextCursor =
+    interviews?.length === limit ? interviews[interviews.length - 1].id : null;
+  return { interviews, nextCursor, error, total: count };
+};
+
+export const getExperiences = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const limit = parseInt(req.query.limit as string) || 12;
+  const cursor = parseInt(req.query.cursor as string) || 0;
+  
+  
+  const { interviews, nextCursor, error, total } = await getInterviewsFromDB({
+    limit,
+    cursor,
+  });
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  return res.json({
+    interviews,
+    nextCursor,
+    total,
+  });
+};

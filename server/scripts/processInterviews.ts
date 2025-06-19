@@ -27,10 +27,14 @@ function extractJsonFromResponse(response) {
 
 async function processSingleInterview(interviewData, index, total) {
   const content = interviewData?.data?.ugcArticleDiscussionArticle?.content;
-  const title = interviewData?.data?.ugcArticleDiscussionArticle?.title || "Untitled Interview";
+  const title =
+    interviewData?.data?.ugcArticleDiscussionArticle?.title ||
+    "Untitled Interview";
 
   if (!content) {
-    console.warn(`[${index + 1}/${total}] Skipping due to missing content: ${title}`);
+    console.warn(
+      `[${index + 1}/${total}] Skipping due to missing content: ${title}`
+    );
     return null;
   }
 
@@ -41,7 +45,7 @@ ${content.slice(0, 30000)}
 Return a strictly valid JSON object with this structure:
 
 {
-  "isInterview": boolean, // False if there is no interview experience or if the post is an offer breakdown or seeking advice or in waiting period or no updates from the interviewer
+  "isInterview": boolean, // False if there is no interview experience or if the post is an offer breakdown or seeking advice or in waiting period or no updates from the interviewer or didn't hear back 
   "interviewQuestions": string[],
   "companyName": string,
   "currentPosition": string | null,
@@ -63,7 +67,7 @@ Use null for unknown strings and empty arrays for unknown lists.
 Respond with only the JSON, no markdown or explanation.`;
 
   try {
-    console.log(`[${index + 1}/${total}] \uD83D\uDCC4 Processing: ${title}`);
+    console.log(`[${index + 1}/${total}] Processing: ${title}`);
     const result = await model.generateContent(prompt);
     const rawText = result.response.text();
     const jsonStr = extractJsonFromResponse(rawText);
@@ -83,7 +87,7 @@ Respond with only the JSON, no markdown or explanation.`;
   }
 }
 
-async function processInterviews(startIndex = 0, limit = 500) {
+async function processInterviews(startIndex = 0, limit = 1000) {
   const interviews = discussionsData.slice(startIndex, startIndex + limit);
   const allSummaries = [];
   const delayMs = 2000;
@@ -91,7 +95,11 @@ async function processInterviews(startIndex = 0, limit = 500) {
   console.log(`Starting to process ${interviews.length} interviews...`);
 
   for (let i = 0; i < interviews.length; i++) {
-    const summary = await processSingleInterview(interviews[i], i + 1, interviews.length);
+    const summary = await processSingleInterview(
+      interviews[i],
+      i + 1,
+      interviews.length
+    );
     if (summary) allSummaries.push(summary);
     if (i < interviews.length - 1) await sleep(delayMs);
   }

@@ -1,5 +1,5 @@
 import RequireAuth from "./components/RequireAuth";
-import Dasboard from "./pages/Dasboard";
+import Dasboard from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Interview from "./pages/Interview";

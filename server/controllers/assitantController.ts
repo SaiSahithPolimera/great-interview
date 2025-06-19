@@ -1,7 +1,11 @@
-import type { Tables } from "../lib/database.types";
+import { Request, Response } from "express";
 
-export const createAssitant = async (req, res) => {
-  const {interview_name, company, technologies, description, duration} = req.body;
+export const createAssitant = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const { interview_name, company, technologies, description, duration } =
+    req.body;
   const assitant = {
     name: interview_name,
     transcriber: {
