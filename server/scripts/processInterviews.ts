@@ -46,8 +46,8 @@ Return a strictly valid JSON object with this structure:
 
 {
   "isInterview": boolean, // False if there is no interview experience or if the post is an offer breakdown or seeking advice or in waiting period or no updates from the interviewer or didn't hear back 
-  "interviewQuestions": string[],
-  "companyName": string,
+  "interviewQuestions": string[], // Question must be as descriptive as possible
+  "companyName": string, // fix company name if company name is not complete
   "currentPosition": string | null,
   "isStudent": boolean,
   "level": string | null,
@@ -57,7 +57,7 @@ Return a strictly valid JSON object with this structure:
   "technologies": string[], // Empty if isInterview is false
   "targetPosition": string,
   "isSystemDesign": boolean,
-  "systemDesignQuestions": string[],
+  "systemDesignQuestions": string[], // If there is an interview question make it more descriptive and clear so that people can understand and work on the question, question must be as descriptive as possible
   "tldr": string, // Summary of the interview experience empty if isInterview is false
   "strategy": string // Strategy used for the interview empty if isInterview is false
 }
@@ -77,8 +77,8 @@ Respond with only the JSON, no markdown or explanation.`;
     const parsed = JSON.parse(jsonStr);
     return parsed;
   } catch (error) {
-    console.error(`[${index + 1}/${total}] Failed: ${title}\n`, error.message);
-    if (error.message.includes("429")) {
+    console.error(`[${index + 1}/${total}] Failed: ${title}\n`, error?.message);
+    if (error?.message.includes("429")) {
       console.log("Rate limit hit. Retrying");
       await sleep(15000);
       return processSingleInterview(interviewData, index, total);
