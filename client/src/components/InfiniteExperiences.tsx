@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getInterviews } from "../services/api";
+import { getInterviewExperiences } from "../services/api";
 import { Loader } from "./Icons";
 import ExperienceCard from "./ExperienceCard";
 import { useInView } from "react-intersection-observer";
@@ -15,7 +15,7 @@ const InfiniteExperiences = () => {
         isFetchingNextPage
     } = useInfiniteQuery({
         queryKey: ['interviews'],
-        queryFn: getInterviews,
+        queryFn: getInterviewExperiences,
         initialPageParam: { cursor: 0, limit: 12 },
         getNextPageParam: (lastPage) => { return lastPage.nextCursor !== null ? { cursor: lastPage.nextCursor, limit: 12 } : undefined; }
     });
@@ -29,6 +29,15 @@ const InfiniteExperiences = () => {
             fetchNextPage();
         }
     }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+    
+    if (status === "error") {
+        return (
+            <div className="text-center py-12 text-white">
+                <div className="text-lg mb-2">Error loading interviews</div>
+                <div className="text-sm">{error.message}</div>
+            </div>
+        );
+    }
 
     if (status === "pending") {
         return (
@@ -38,16 +47,8 @@ const InfiniteExperiences = () => {
         );
     }
 
-    if (status === "error") {
-        return (
-            <div className="text-center py-12 text-red-400">
-                <div className="text-lg mb-2">Error loading interviews</div>
-                <div className="text-sm">{error.message}</div>
-            </div>
-        );
-    }
 
-    const allInterviews = data?.pages.flatMap(page => page.data) || [];
+    const allInterviews = data?.pages.flatMap(page => page.interviews) || [];
 
     if (allInterviews.length === 0) {
         return (
@@ -59,8 +60,8 @@ const InfiniteExperiences = () => {
     }
 
     return (
-        <div className="px-8 pb-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+        <div className="px-64 pb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-8">
                 {allInterviews.map((interview) => (
                     <ExperienceCard key={interview.id} interview={interview} />
                 ))}

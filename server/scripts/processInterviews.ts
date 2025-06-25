@@ -1,11 +1,14 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import dotenv from "dotenv";
 import discussionsData from "../scraper/discussions.json";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import * as dotenv from 'dotenv';
 
-dotenv.config({ path: "../.env" });
+
+dotenv.config({path: "../.env"})
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +20,7 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite-preview-06-17" });
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function extractJsonFromResponse(response) {
@@ -45,8 +48,8 @@ ${content.slice(0, 30000)}
 Return a strictly valid JSON object with this structure:
 
 {
-  "isInterview": boolean, // False if there is no interview experience or if the post is an offer breakdown or seeking advice or in waiting period or no updates from the interviewer or didn't hear back 
-  "interviewQuestions": string[], // Question must be as descriptive as possible
+  "isInterview": boolean, // False if there is no interview experience or if the post is an offer breakdown or seeking advice or in waiting period or no updates from the interviewer or didn't hear back, False if the author is rejeceted by a company and did not specify the reason for rejection
+  "interviewQuestions": string[], // Question must be as descriptive as possible if the question in available in the interview provide the link to the questions
   "companyName": string, // fix company name if company name is not complete
   "currentPosition": string | null,
   "isStudent": boolean,

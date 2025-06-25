@@ -1,10 +1,11 @@
 import express from "express";
 import { assitantRouter } from "./routes/assitantRouter.js";
+import * as dotenv from "dotenv";
 import cors from "cors";
-import { config } from "dotenv";
 import { interviewRouter } from "./routes/interviewRouter.js";
 
-config();
+
+dotenv.config();
 
 const app = express();
 

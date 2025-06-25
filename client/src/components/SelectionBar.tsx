@@ -29,7 +29,7 @@ const SelectionBar = ({
   }, [selectedOption, options]);
 
   return (
-    <div className="flex flex-col items-center w-full gap-6">
+    <div className="md:flex flex-col items-center w-full gap-6 hidden">
       <div className="relative text-white flex items-center self-center gap-4 bg-slate-800 p-1 rounded-2xl -mt-6">
         <div
           className="absolute bg-slate-700 border-[1px] border-slate-500 rounded-xl transition-all duration-500 ease-out"

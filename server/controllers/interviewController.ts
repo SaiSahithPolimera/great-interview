@@ -50,6 +50,24 @@ const getSystemDesignQuestionsFromDB = async ({
   };
 };
 
+const getInterviewQuestionsFromDB = async ({limit, cursor}: paginationTypes) => {
+  let query = supabase.from("interview_questions").select().order("id").limit(limit);
+  if (cursor) {
+    query = query.gt("id", cursor);
+  }
+
+  const {data: questions, error} = await query;
+
+  const nextCursor = questions?.length === limit ? questions[questions?.length - 1].id : null
+
+  return {
+    questions,
+    nextCursor, 
+    error
+  }
+
+}
+
 export const getExperiences = async (
   req: Request,
   res: Response
@@ -87,3 +105,16 @@ export const getSystemDesignQuestions = async (
   }
   return res.json({ questions, nextCursor });
 };
+
+
+export const getInterviewQuestions = async (req: Request, res: Response) : Promise<any> =>{
+  const limit = parseInt(req.query.limit as string) || 12;
+  const cursor = parseInt(req.query.cursor as string) || 0;
+  const {questions, error, nextCursor} = await getInterviewQuestionsFromDB({limit, cursor});
+
+  if(error) {
+    return res.status(500).json({error: error.message});
+  }
+
+  return res.json({questions, nextCursor});
+}

@@ -5,7 +5,7 @@ import SpotlightCard from "./SpotLightCard";
 const ExperienceCard = ({ interview }: { interview: Tables<"interviews"> }) => {
     if (!interview.tldr || !interview.is_interview) return;
 
-    const companyKey = !interview.company_name ? "No company mentioned" : interview.company_name.toLowerCase();
+    const companyKey = !interview.company_name ? "" : interview.company_name.toLowerCase();
     const companyIcon = companyIcons[companyKey] ? companyIcons[companyKey] : null;
 
     return (
@@ -17,7 +17,7 @@ const ExperienceCard = ({ interview }: { interview: Tables<"interviews"> }) => {
                     }
                     <p className="text-white first-letter:capitalize">{interview.company_name}</p>
                 </div>
-                <p className="text-sm text-slate-300 text-start">
+                <p className="text-sm text-slate-300 text-start ">
                     {interview.tldr}
                 </p>
             </div>
