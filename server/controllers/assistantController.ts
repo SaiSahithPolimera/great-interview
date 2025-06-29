@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 
-export const createAssitant = async (
+export const createAssistant = async (
   req: Request,
   res: Response
 ): Promise<any> => {
   const { interview_name, company, technologies, description, duration } =
     req.body;
-  const assitant = {
+  const assistant = {
     name: interview_name,
     transcriber: {
       provider: "deepgram",
@@ -68,5 +68,5 @@ export const createAssitant = async (
     },
   };
 
-  return res.json(assitant);
+  return res.json(assistant);
 };

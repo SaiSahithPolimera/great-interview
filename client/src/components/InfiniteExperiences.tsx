@@ -60,8 +60,8 @@ const InfiniteExperiences = () => {
     }
 
     return (
-        <div className="px-64 pb-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-8">
+        <div className="md:px-64 pb-20 p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:mt-8">
                 {allInterviews.map((interview) => (
                     <ExperienceCard key={interview.id} interview={interview} />
                 ))}

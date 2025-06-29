@@ -1,9 +1,13 @@
 import { Router } from "express";
-import { createAssitant } from "../controllers/assitantController";
-import { getExperiences, getInterviewQuestions, getSystemDesignQuestions } from "../controllers/interviewController";
+import {
+  getExperiences,
+  getInterviewQuestions,
+  getMockInterviews,
+  getSystemDesignQuestions,
+} from "../controllers/interviewController.js";
 export const interviewRouter = Router();
 
-interviewRouter.post("/api/interview", createAssitant);
 interviewRouter.get("/api/system-design", getSystemDesignQuestions);
 interviewRouter.get("/api/experiences", getExperiences);
 interviewRouter.get("/api/questions", getInterviewQuestions);
+interviewRouter.get("/api/mock-interviews", getMockInterviews);

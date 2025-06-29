@@ -1,8 +1,8 @@
 import express from "express";
-import { assitantRouter } from "./routes/assitantRouter.js";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import { interviewRouter } from "./routes/interviewRouter.js";
+import { assistantRouter } from "../routes/assistantRouter.js";
+import { interviewRouter } from "../routes/interviewRouter.js";
 
 
 dotenv.config();
@@ -15,13 +15,13 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: [process.env.HOST_URL],
+    origin: [process.env.HOST_URL || ""],
   })
 );
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use(assitantRouter);
+app.use(assistantRouter);
 
 app.use(interviewRouter);
 

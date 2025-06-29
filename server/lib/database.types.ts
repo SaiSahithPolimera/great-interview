@@ -69,7 +69,7 @@ export type Database = {
           offer_breakdown: string | null
           strategy: string | null
           target_position: string | null
-          tldr: string | null
+          tldr: string
         }
         Insert: {
           company_name?: string | null
@@ -84,7 +84,7 @@ export type Database = {
           offer_breakdown?: string | null
           strategy?: string | null
           target_position?: string | null
-          tldr?: string | null
+          tldr: string
         }
         Update: {
           company_name?: string | null
@@ -99,7 +99,40 @@ export type Database = {
           offer_breakdown?: string | null
           strategy?: string | null
           target_position?: string | null
-          tldr?: string | null
+          tldr?: string
+        }
+        Relationships: []
+      }
+      mock_interviews: {
+        Row: {
+          company: string
+          created_at: string | null
+          description: string | null
+          domain: string | null
+          format: string | null
+          level: string | null
+          session_id: number
+          title: string
+        }
+        Insert: {
+          company: string
+          created_at?: string | null
+          description?: string | null
+          domain?: string | null
+          format?: string | null
+          level?: string | null
+          session_id?: number
+          title: string
+        }
+        Update: {
+          company?: string
+          created_at?: string | null
+          description?: string | null
+          domain?: string | null
+          format?: string | null
+          level?: string | null
+          session_id?: number
+          title?: string
         }
         Relationships: []
       }

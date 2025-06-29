@@ -14,16 +14,14 @@ const Dasboard = () => {
       case "Experiences":
         return (
           <>
-              <InfiniteExperiences/>
+            <InfiniteExperiences />
           </>
         );
 
       case "System Design":
         return (
-          <div className="text-center py-12 text-slate-400">
-            <SystemDesignQuestions/>
-          </div>);
-
+          <SystemDesignQuestions />
+        )
       case "Interview":
         return (
           <div className="text-center py-12 text-slate-400">
@@ -35,9 +33,7 @@ const Dasboard = () => {
 
       case "Questions":
         return (
-          <div className="text-center py-12 text-slate-400">
-            <InterviewQuestions/>
-            </div>
+          <InterviewQuestions />
         );
 
       default:
@@ -48,7 +44,7 @@ const Dasboard = () => {
   return (
     <section className="relative overflow-scroll min-h-screen bg-slate-950 bg-repeat">
       <div className="absolute flex flex-col bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] bg-repeat ">
-        <Navbar />
+        <Navbar selectedOption={selectedOption} setSelectedOption={setSelectedOption} options={options} />
 
         {(
           <>
