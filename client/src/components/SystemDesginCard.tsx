@@ -6,9 +6,9 @@ import { companyIcons, TickIcon } from "./Icons"
 const SystemDesginCard = ({ question }: { question: Tables<"system_design_questions"> }) => {
 
   
-  const company = companyIcons[question.company?.toLowerCase()] ? companyIcons[question.company?.toLowerCase()] : null;
+  const company = question.company && companyIcons[question.company?.toLowerCase()] ? companyIcons[question.company?.toLowerCase()] : null;
 
-  const initialState = localStorage.getItem(question.id);
+  const initialState = localStorage.getItem(question.id.toString());
 
   const [isCompleted,  setIsCompleted] = useState(initialState);
 

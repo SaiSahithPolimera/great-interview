@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { MicIcon } from "./Icons";
-import { useAuth } from "../hooks/useAuth";
 
 const GetStartedButton = () => {
     return (
@@ -16,7 +15,6 @@ const GetStartedButton = () => {
 }
 
 const Hero = () => {
-    const { user } = useAuth();
     return (
         <div className="flex-grow-1 flex items-center flex-col gap-2 w-full justify-center animate-fade">
             <div className="relative group cursor-pointer p-[1px] rounded-2xl 
@@ -29,7 +27,7 @@ const Hero = () => {
             </div>
             <p className="text-2xl text-white font-semibold">Get familiar with real-interviews</p>
             <p className="text-sm text-slate-200 font-medium">Start your mock interview prep with the help of AI</p>
-            {user && <GetStartedButton />}
+            <GetStartedButton />
         </div>
     )
 }

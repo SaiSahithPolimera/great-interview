@@ -35,8 +35,7 @@ export const getInterviewExperiences = async ({
     throw new Error("Failed to fetch interviews");
   }
 
-  const { interviews, nextCursor }: InterviewsPageResponse =
-    await res.json();
+  const { interviews, nextCursor }: InterviewsPageResponse = await res.json();
   return {
     interviews,
     nextCursor,
@@ -86,4 +85,13 @@ export const getInterviewQuestions = async ({
     questions,
     nextCursor,
   };
+};
+
+export const getMockInterviews = async () => {
+  const res = await fetch(`${URL}/api/mock-interviews`, {
+    method: "GET",
+  });
+  const { interviews }: { interviews: Tables<"mock_interviews">[] } =
+    await res.json();
+  return interviews;
 };

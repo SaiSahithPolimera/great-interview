@@ -1,31 +1,23 @@
 import { Tables } from "../lib/database.types"
 import { companyIcons } from "./Icons";
 
-const isURL = (text: string): URL | boolean => {
+const isURL = (text: string): URL | null => {
   let url;
   try {
     url = new URL(text);
     return url;
   }
   catch (error) {
-    return false;
+    console.error(error);
+    return null;
   }
 }
-
-const getTitle = (path: string): string => {
-
-  const strs = path.split("/");
-  return strs[strs.length - 1].split("-").join(" ");
-}
-
-
-
 
 
 
 const InterviewQuestionCard = ({ interviewQuestion }: { interviewQuestion: Tables<"interview_questions"> }) => {
 
-  const { id, company, technologies, questions } = interviewQuestion;
+  const { id, company, questions } = interviewQuestion;
   ;
 
   const links: URL[] = [];
@@ -72,8 +64,6 @@ const InterviewQuestionCard = ({ interviewQuestion }: { interviewQuestion: Table
       </div>
     </div>
   )
-
-  links.length = 0;
 }
 
-export default InterviewQuestionCard
+export default InterviewQuestionCard;

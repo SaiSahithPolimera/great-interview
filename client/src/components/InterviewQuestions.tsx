@@ -7,7 +7,7 @@ import { Loader } from "./Icons"
 
 const InterviewQuestions = () => {
 
-    const { data: interviewQuestions, fetchNextPage, error, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery({
+    const { data: interviewQuestions, isLoading, fetchNextPage, error, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery({
         queryKey: ['interview_questions'],
         queryFn: getInterviewQuestions,
         initialPageParam: { cursor: 0, limit: 12 },
@@ -24,10 +24,27 @@ const InterviewQuestions = () => {
         }
     })
 
+    if (status === "error") {
+        return (
+            <div className="text-center py-12 text-white">
+                <div className="text-lg mb-2">Error loading interviews</div>
+                <div className="text-sm">{error.message}</div>
+            </div>
+        );
+    }
+
+    if (status === "pending" || isLoading) {
+        return (
+            <div className="w-full h-64 flex justify-center items-center">
+                <Loader />
+            </div>
+        );
+    }
+
     const allInterviewQuestions = interviewQuestions?.pages.flatMap(page => page.questions);
 
     return (
-        <div className="px-64 pb-20 flex flex-col gap-3">
+        <div className="md:px-64 pb-20 p-4 flex flex-col gap-4">
             {
                 allInterviewQuestions?.map((question) => <InterviewQuestionCard key={question.id} interviewQuestion={question} />)
             }

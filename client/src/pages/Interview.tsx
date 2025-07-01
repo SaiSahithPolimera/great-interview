@@ -17,13 +17,13 @@ const Interview = () => {
   const [transcript, setTranscript] = useState<string[]>([]);
   const blocker = useBlocker(({ currentLocation, nextLocation }) => error !== "" || currentLocation.pathname !== nextLocation.pathname);
   const location = useLocation();
-  const { interview }: { interview: Tables<"interviews"> } = location.state;
+  const { interview }: { interview: Tables<"mock_interviews"> } = location.state;
   const url = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const getAssitant = async (): Promise<CreateAssistantDTO | undefined> => {
       try {
-        const res = await fetch(`${url}/api/create-assitant`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(interview) })
+        const res = await fetch(`${url}/api/create-assistant`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(interview) })
         const assistantOptions = await res.json();
         return assistantOptions;
       }
@@ -133,7 +133,11 @@ const Interview = () => {
                 </div>
                 <div className="text-white items-center flex justify-center text-md">{message}</div>
                 <div className="text-white flex-grow-0 self-center">
-                  <button onClick={endCall} className="bg-red-700 px-2 text-md py-0.5 rounded-full hover:bg-red-600 ease-in-out duration-150 cursor-pointer" >
+                  <button onClick={() => {
+                    endCall();
+                  }
+
+                  } className="bg-red-700 px-2 text-md py-0.5 rounded-full hover:bg-red-600 ease-in-out duration-150 cursor-pointer" >
                     <HangUp />
                   </button>
                 </div>

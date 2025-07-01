@@ -19,10 +19,7 @@ const routes: RouteTypes = [
     },
     {
         path: "/dashboard",
-        element:
-            <RequireAuth redirectTo="/login">
-                <Dasboard />
-            </RequireAuth>,
+        element: <Dasboard />,
         errorElement: <Error />
     }
     , {

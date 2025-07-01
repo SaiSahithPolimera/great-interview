@@ -7,7 +7,7 @@ import { useEffect } from "react"
 
 
 const SystemDesignQuestions = () => {
-  const { data: questions, error, status, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+  const { data: questions, error, status, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({
     queryKey: ['system_design_questions'],
     queryFn: getSystemDQS,
     initialPageParam: { cursor: 0, limit: 12 },
@@ -37,7 +37,7 @@ const SystemDesignQuestions = () => {
       </div>
     );
   }
-  if (status === "pending") {
+  if (status === "pending" || isLoading) {
     return (
       <div className="w-full h-64 flex justify-center items-center">
         <Loader />
@@ -46,9 +46,10 @@ const SystemDesignQuestions = () => {
   }
 
   return (
-    <div className="px-64 pb-20 flex flex-col gap-3">      {
-      allQuestions?.map((question) => <SystemDesginCard key={question.id} question={question} />)
-    }
+    <div className="md:px-64 p-4 flex flex-col gap-4">
+      {
+        allQuestions?.map((question) => <SystemDesginCard key={question.id} question={question} />)
+      }
       {hasNextPage && (
         <div ref={ref} className="w-full flex justify-center py-8">
           {isFetchingNextPage && <Loader />}
