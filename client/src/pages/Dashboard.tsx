@@ -42,8 +42,9 @@ const Dasboard = () => {
   };
 
   return (
-    <section className="relative overflow-scroll min-h-screen bg-slate-950 bg-repeat">
-      <div className="absolute flex flex-col bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] bg-repeat ">
+    <section className="relative min-h-screen bg-slate-950 bg-repeat overflow-scroll">
+      <div className="fixed inset-0 flex flex-col bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] bg-repeat z-0" />
+      <div className="relative flex flex-col min-h-screen z-10">
         <Navbar selectedOption={selectedOption} setSelectedOption={setSelectedOption} options={options} />
 
         {(
