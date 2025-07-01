@@ -35,11 +35,13 @@ const InterviewQuestionCard = ({ interviewQuestion }: { interviewQuestion: Table
 
 
   return (
-    <div className="p-2  bg-slate-900/90 border-[1px]  border-slate-700  rounded-xl">
+    <div className="p-2  bg-slate-900/90 border-[1px] border-slate-700 rounded-xl">
       <div className="flex flex-col gap-2">
         {company && company?.length > 0 && <div className="flex gap-2 items-center text-white p-2 ">
-          <div className="first-letter:uppercase">
-            {companyIcons[company.toLowerCase()]}</div>
+          <div className="first-letter:uppercase flex items-center gap-2">
+            {companyIcons[company.toLowerCase()]}
+            <div className="first-letter:capitalize">{company.toLowerCase()}</div>
+          </div>
         </div>
         }
         <ul className="p-2">

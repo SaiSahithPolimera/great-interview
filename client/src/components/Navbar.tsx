@@ -15,9 +15,9 @@ const Navbar = ({options, selectedOption, setSelectedOption}: Options) => {
       <div className="md:block hidden">
         <LoginButton />
       </div>
-      <button className="md:hidden block  cursor-pointer hover:bg-slate-800/6 rounded-lg">
+      <div className="md:hidden block  cursor-pointer hover:bg-slate-800/6 rounded-lg">
         <MenuBar options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-      </button>
+      </div>
     </div>
   )
 }

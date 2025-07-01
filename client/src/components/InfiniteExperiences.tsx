@@ -29,7 +29,7 @@ const InfiniteExperiences = () => {
             fetchNextPage();
         }
     }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
-    
+
     if (status === "error") {
         return (
             <div className="text-center py-12 text-white">

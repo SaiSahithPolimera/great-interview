@@ -12,7 +12,7 @@ const MenuBar = ({ options, selectedOption, setSelectedOption }: Options) => {
   return (
     <div className="hover:bg-slate-800/50 rounded-lg cursor-pointer">
       {isSelected === true ?
-        <button  className="cursor-pointer p-1" onClick={() => setSelected(false)}>
+        <button className="cursor-pointer p-1" onClick={() => setSelected(false)}>
           <CloseIcon />
         </button> :
         <button className="cursor-pointer p-1" onClick={() => setSelected(true)}>
@@ -26,11 +26,16 @@ const MenuBar = ({ options, selectedOption, setSelectedOption }: Options) => {
               {options?.map((option) => (
                 <div
                   key={option}
-                  className={`p-2 flex cursor-pointe w-fit rounded-xl text-sm  border-slate-600 transition-colors duration-300 ease-in-out ${selectedOption === option
+                  className={`p-2 flex cursor-pointe w-fit rounded-xl border-slate-600 transition-colors duration-300 ease-in-out ${selectedOption === option
                     ? 'text-white bg-slate-600/60 border-2'
                     : 'text-slate-400 hover:text-white'
                     }`}
-                  onClick={() => setSelectedOption && setSelectedOption(option)}
+                  onClick={() => {
+                    if (setSelectedOption) {
+                      setSelectedOption(option);
+                      setSelected(false);
+                    }
+                  }}
                 >
                   {option}
                 </div>
