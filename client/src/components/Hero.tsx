@@ -25,15 +25,12 @@ const Hero = () => {
                     <MicIcon /> Ace your next interview
                 </div>
             </div>
-            <div className="text-center space-y-2">
-                <p className="text-2xl font-bold text-white">
-                    Learn from 1000+ Real Interviews, Summarized by AI
+            <div className="text-center md:p-2 p-6 space-y-2">
+                <p className="md:text-2xl font-semibold text-white">
+                    Learn from 1000+ Real interview experiences, Curated by LLMs
                 </p>
                 <p className="text-md text-slate-200 font-medium">
-                    Explore <span className="text-white font-semibold">TLDRs</span> of real candidate journeys, winning strategies,
-                </p>
-                <p className="text-md text-slate-200 font-medium">
-                    and actual interview questions — powered by <span className="text-white font-semibold">Gemini</span> & <span className="text-white font-semibold">ChatGPT</span>.
+                    Explore <span className="text-white font-semibold">TLDRs</span>, strategies and more
                 </p>
             </div>
             <GetStartedButton />

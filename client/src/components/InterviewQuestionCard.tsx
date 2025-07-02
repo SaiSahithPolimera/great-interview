@@ -1,53 +1,52 @@
+import Markdown from "marked-react";
 import { Tables } from "../lib/database.types"
-import { companyIcons } from "./Icons";
-
-const isURL = (text: string): URL | null => {
-  let url;
-  try {
-    url = new URL(text);
-    return url;
-  }
-  catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
-
+import { companyIcons, TickIcon } from "./Icons";
+import { useState } from "react";
 
 const InterviewQuestionCard = ({ interviewQuestion }: { interviewQuestion: Tables<"interview_questions"> }) => {
 
   const { id, company, questions } = interviewQuestion;
-  ;
+  const initialState = localStorage.getItem(interviewQuestion.id.toString());
+
+  const [isCompleted, setIsCompleted] = useState<string | null>(initialState);
 
   const links: URL[] = [];
 
-  const filteredQuestions = questions?.filter((question) => {
-    const url = isURL(question)
-    if (url) {
-      links.push(url);
-      return false;
+  const saveStatus = (id: number) => {
+    if (isCompleted == "true") {
+      localStorage.setItem(id.toString(), "false");
+      setIsCompleted("false");
     }
-    return true;
-  })
+    else {
+      localStorage.setItem(id.toString(), "true");
+      setIsCompleted("true");
+    }
+  }
 
   if (interviewQuestion.questions?.length === 0) return;
 
 
   return (
-    <div className="p-2  bg-slate-900/90 border-[1px] border-slate-700 rounded-xl">
-      <div className="flex flex-col gap-2">
+    <div className="p-2 grid grid-cols-[minmax(200px,_1fr)_30px] items-start  bg-slate-900/90 border-[1px] border-slate-700 rounded-xl">
+      <div className="flex flex-col gap-1">
         {company && company?.length > 0 && <div className="flex gap-2 items-center text-white p-2 ">
           <div className="first-letter:uppercase flex items-center gap-2">
             {companyIcons[company.toLowerCase()]}
-            <div className="first-letter:capitalize">{company.toLowerCase()}</div>
+            <div className="first-letter:capitalize">{company}</div>
           </div>
         </div>
         }
         <ul className="p-2">
           {
-            filteredQuestions?.map((question, index) => (
-              <li className="text-start text-slate-300 first-letter:capitalize" key={id + index}>{question}</li>
+            questions?.map((question, index) => (
+              <li className="text-slate-300 text-wrap" key={id + index}>
+                {
+                  <Markdown>
+                    {question}
+                  </Markdown>
+                }
+
+              </li>
             ))
           }
         </ul>
@@ -64,6 +63,9 @@ const InterviewQuestionCard = ({ interviewQuestion }: { interviewQuestion: Table
           </div>
         }
       </div>
+      <button className="p-1 cursor-pointer" onClick={() => saveStatus(id)}>
+        <TickIcon className={`${isCompleted === "true" ? "text-green-500" : "text-slate-300"} `} />
+      </button>
     </div>
   )
 }

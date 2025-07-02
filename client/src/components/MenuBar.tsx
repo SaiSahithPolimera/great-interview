@@ -26,7 +26,7 @@ const MenuBar = ({ options, selectedOption, setSelectedOption }: Options) => {
               {options?.map((option) => (
                 <div
                   key={option}
-                  className={`p-2 flex cursor-pointe w-fit rounded-xl border-slate-600 transition-colors duration-300 ease-in-out ${selectedOption === option
+                  className={`p-2 flex cursor-pointe w-fit rounded-xl border-slate-600 transition-colors duration-300 text-sm ease-in-out ${selectedOption === option
                     ? 'text-white bg-slate-600/60 border-2'
                     : 'text-slate-400 hover:text-white'
                     }`}

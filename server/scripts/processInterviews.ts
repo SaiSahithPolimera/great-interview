@@ -48,7 +48,7 @@ Return a strictly valid JSON object with this structure:
 
 {
   "isInterview": boolean, // False if there is no interview experience or if the post is an offer breakdown or seeking advice or in waiting period or no updates from the interviewer or didn't hear back, False if the author is rejected by a company and did not specify the reason for rejection, False if no detailed breakdown of interview process
-  "interviewQuestions": string[], // List all the interview questions mentioned in the POST, question must be as descriptive as possible if the question in available in the online platforms provide the link to the questions, provide contraints and sample testcases **USE MARKDOWN**
+  "interviewQuestions": string[], // List all the interview questions mentioned in the POST, question must be as descriptive as possible if the question in available in the online platforms provide the link to the questions, provide contraints and sample testcases PROVIDE AS UNORDERED LIST **USE MARKDOWN** **USE backticks for code**
   "companyName": string, // fix company name if company name is not complete
   "currentPosition": string | null,
   "isStudent": boolean,
