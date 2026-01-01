@@ -15,7 +15,8 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: [process.env.HOST_URL || ""],
+    origin: true, // Reflects the request origin, allowing any origin
+    credentials: true,
   })
 );
 
@@ -26,3 +27,5 @@ app.use(assistantRouter);
 app.use(interviewRouter);
 
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+
+export default app;
