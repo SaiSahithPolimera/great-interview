@@ -1,16 +1,11 @@
 import { useState } from "react";
 import { Tables } from "../lib/database.types"
-import { companyIcons, TickIcon } from "./Icons"
+import { TickIcon, BuildingIcon, CompanyIcon } from "./Icons"
 import Markdown from "marked-react";
 
 
 const SystemDesginCard = ({ question }: { question: Tables<"system_design_questions"> }) => {
-
-
-  const company = question.company && companyIcons[question.company?.toLowerCase()] ? companyIcons[question.company?.toLowerCase()] : null;
-
   const initialState = localStorage.getItem(question.id.toString());
-
   const [isCompleted, setIsCompleted] = useState<string | null>(initialState);
 
   const saveStatus = (id: number) => {
@@ -25,17 +20,34 @@ const SystemDesginCard = ({ question }: { question: Tables<"system_design_questi
   }
 
   if (!question.question?.length) {
-    return;
+    return null;
   }
+  
+  const companyName = question.company?.trim() || "";
+  const companies = companyName ? companyName.split(',').map(c => c.trim()).filter(c => c.length > 0) : [];
+
   return (
     <div className="p-2  bg-slate-900/90 border-[1px]  border-slate-700 cursor-pointer rounded-xl">
       <div className="flex justify-between items-center">
         <div className="flex gap-2 flex-col items-start p-2">
-          {company && <div className="flex gap-2 items-center text-white ">{company}
-            <div className="first-letter:uppercase">
-              {question?.company && question.company?.length > 0 && question.company}
+          {companyName && (
+            <div className="flex gap-2 items-center text-white">
+              <div className="flex -space-x-2 mr-1">
+                  {companies.length > 0 ? (
+                      companies.map((company, idx) => (
+                          <div key={`${company}-${idx}`} className="relative">
+                              <CompanyIcon name={company} />
+                          </div>
+                      ))
+                  ) : (
+                      <BuildingIcon />
+                  )}
+              </div>
+              <div className="first-letter:uppercase font-medium ml-1">
+                {companyName}
+              </div>
             </div>
-          </div>}
+          )}
           <ul className="text-start text-slate-300  list-none flex-col gap-1">{question.question?.map((question, index) => (
 
             <li key={question + index.toString()} className="first-letter:capitalize text-slate-300">

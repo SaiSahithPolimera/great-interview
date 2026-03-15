@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getInterviewExperiences } from "../services/api";
+import Masonry from "react-masonry-css";
 import { Loader } from "./Icons";
 import ExperienceCard from "./ExperienceCard";
 import { useInView } from "react-intersection-observer";
@@ -61,11 +62,15 @@ const InfiniteExperiences = () => {
 
     return (
         <div className="md:px-64 pb-20 p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:mt-8">
+            <Masonry
+                breakpointCols={{ default: 3, 1024: 2, 768: 1 }}
+                className="flex w-auto -ml-4 md:mt-8"
+                columnClassName="pl-4 bg-clip-padding flex flex-col gap-4"
+            >
                 {allInterviews.map((interview) => (
                     <ExperienceCard key={interview.id} interview={interview} />
                 ))}
-            </div>
+            </Masonry>
 
             {hasNextPage && (
                 <div ref={ref} className="w-full flex justify-center py-8">
