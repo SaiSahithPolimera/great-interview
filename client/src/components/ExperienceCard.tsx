@@ -30,17 +30,17 @@ const ExperienceCard = ({ interview }: { interview: Tables<"interviews"> }) => {
                     </div>
                     <p className="text-white first-letter:capitalize font-medium">{displayTitle}</p>
                 </div>
-                <p className="text-sm text-slate-300 text-start ">
+                <div className="text-slate-300 text-sm md:text-[15px] prose">
                     <Markdown>
                         {interview.tldr}
                     </Markdown>
-                </p>
+                </div>
                 {interview?.strategy && interview.strategy?.length > 0 ?
                     <div className="self-start">
-                        <div className="text-white flex gap-2 items-center">Startegy
+                        <div className="text-white flex gap-2 items-center">Strategy
                             {
                                 <button className="cursor-pointer text-2xl" onClick={() => setIsOpen(!isOpen)}>
-                                    {isOpen ? <BottomIcon /> : <UpIcon />}
+                                    {isOpen ? <UpIcon /> : <BottomIcon />}
                                 </button>}
                         </div>
                         {

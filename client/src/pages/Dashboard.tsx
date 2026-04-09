@@ -6,8 +6,7 @@ import SystemDesignQuestions from "../components/SystemDesignQuestions";
 import InterviewQuestions from "../components/InterviewQuestions";
 
 const Dasboard = () => {
-
-  const options: string[] = ["Experiences", "System Design", "Questions", "Interview"];
+  const options: string[] = ["Experiences", "System Design", "Questions"];
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const renderContent = () => {
     switch (selectedOption) {
@@ -21,14 +20,6 @@ const Dasboard = () => {
       case "System Design":
         return (
           <SystemDesignQuestions />
-        )
-      case "Interview":
-        return (
-          <div className="text-center py-12 text-slate-400">
-            <div className="text-6xl mb-4">🚧</div>
-            <div className="text-lg mb-2">Interview section coming soon</div>
-            <div className="text-sm">We're working on this section.</div>
-          </div>
         )
 
       case "Questions":

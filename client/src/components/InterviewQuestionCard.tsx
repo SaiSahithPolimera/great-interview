@@ -53,12 +53,11 @@ const InterviewQuestionCard = ({ interviewQuestion }: { interviewQuestion: Table
           {
             questions?.map((question, index) => (
               <li className="text-slate-300 text-wrap" key={id + index}>
-                {
+                <div className="prose">
                   <Markdown>
                     {question}
                   </Markdown>
-                }
-
+                </div>
               </li>
             ))
           }

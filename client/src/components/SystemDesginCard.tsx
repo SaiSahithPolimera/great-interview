@@ -51,9 +51,11 @@ const SystemDesginCard = ({ question }: { question: Tables<"system_design_questi
           <ul className="text-start text-slate-300  list-none flex-col gap-1">{question.question?.map((question, index) => (
 
             <li key={question + index.toString()} className="first-letter:capitalize text-slate-300">
-              <Markdown>
-                {question}
-              </Markdown>
+              <div className="prose">
+                <Markdown>
+                  {question}
+                </Markdown>
+              </div>
             </li>))}</ul>
         </div>
         <div className="p-3" onClick={() => saveStatus(question.id)}>

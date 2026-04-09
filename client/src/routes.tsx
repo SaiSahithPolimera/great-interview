@@ -1,8 +1,6 @@
-import RequireAuth from "./components/RequireAuth";
 import Dasboard from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
-import Interview from "./pages/Interview";
 import Login from "./pages/Login";
 
 type RouteTypes = {
@@ -21,18 +19,10 @@ const routes: RouteTypes = [
         path: "/dashboard",
         element: <Dasboard />,
         errorElement: <Error />
-    }
-    , {
-        path: "/login",
-        element: <Login />,
-        errorElement: <Error />
     },
     {
-        path: "/interview/:name",
-        element:
-            <RequireAuth redirectTo="/login">
-                <Interview />
-            </RequireAuth>,
+        path: "/login",
+        element: <Login />,
         errorElement: <Error />
     },
 ]
